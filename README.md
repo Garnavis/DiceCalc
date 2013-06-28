@@ -5,8 +5,8 @@ most other dice-rolling programs in that it operates with dice formula
 strings, which many tabletop gamers will be familiar with from source books
 and command-line or IRC bot dice rollers.  It uses a GUI resembling a pocket
 calculator because I think it is cool.  I also think it's an eficient way to
-type dice formulas.  However, the Dice and DiceParser classes may be used
-separately for other formula-based dice rollers.
+type dice formulas.  However, the Dice class may be used separately for other
+formula-based dice rollers.
 
 ## How It Works ##
 In case you don't know what a dice formula is or how to read one, the look
@@ -32,8 +32,8 @@ damage for your +2 flaming longsword, you can enter:
 You can also have more than one constant modifier.  In fact, your whole roll
 can consist of constant modifiers.
 
-And that's how dice formulas work.  Dice and DiceParser do all the work and
-return a final value of the roll.  Note that unlike some other dice rollers,
+And that's how dice formulas work.  The Dice classdoes all the work and
+returns a final value of the roll.  Note that unlike some other dice rollers,
 DiceCalc does not also display the results of individual rolls.
 
 ## Possible Future Additions ##

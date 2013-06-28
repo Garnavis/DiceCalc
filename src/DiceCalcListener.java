@@ -9,16 +9,18 @@ public class DiceCalcListener implements ActionListener {
     private static boolean displayingResult = false;
     private static int result;
     private static String expression;
+    
+    /* Display a message if the dice formula is invalid. */
     private static void nope() {
         final String temp = DiceCalc.lcd.getText();
-        DiceCalc.lcd.setText("nope.jpg");
+        DiceCalc.lcd.setText("nope");
         final JTextField lcd = DiceCalc.lcd;
         new Thread(new Runnable() {
             public void run() {
                 try {
                     Thread.sleep(500);
                 } catch ( InterruptedException ie ) {
-                DiceCalc.lcd.setText("SHIT'S FUCKED UP");
+                DiceCalc.lcd.setText("ERROR");
                 ie.printStackTrace();
                 } finally {
                     lcd.setText(temp);
@@ -37,16 +39,16 @@ public class DiceCalcListener implements ActionListener {
                 return;
             }
             if ( displayingResult ) {
-                // if the result is already being displayed, 
-                // re-roll the expression from memory
-                result = DiceParser.read(expression, "", 0);
+                /* If the result is already being displayed, 
+                   re-roll the expression from memory. */
+                result = Dice.parse(expression, "", 0);
                 DiceCalc.lcd.setText(Integer.toString(result));
                 return;
             }
             expression = DiceCalc.lcd.getText();
             writingDie = false;
             displayingResult = true;
-            result = DiceParser.read(DiceCalc.lcd.getText(), "", 0);
+            result = Dice.parse(DiceCalc.lcd.getText(), "", 0);
             DiceCalc.lcd.setText(Integer.toString(result));
             return;
         } else if ( "clr".equals(e.getActionCommand()) ) {
